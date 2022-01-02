@@ -1,6 +1,7 @@
 from requests import Request, Session
 from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
+import streamlit as sl
 
 url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
 
@@ -24,3 +25,5 @@ try:
   print(data)
 except (ConnectionError, Timeout, TooManyRedirects) as e:
   print(e)
+sl.title("Crypto Data Science App")
+sl.image("crypto-app-logo.jpeg")
