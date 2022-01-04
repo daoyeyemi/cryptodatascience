@@ -23,10 +23,18 @@ session.headers.update(headers)
 try:
   response = session.get(url, params=parameters)
   data = json.loads(response.text)
-  print(data)
+#   print(data, type(data))
+
 except (ConnectionError, Timeout, TooManyRedirects) as e:
   print(e)
+
+data = data["data"]
+
+for point in data:
+    print("yeahhhh buddy")
+
 sl.title("Crypto Data Science App")
+
 sl.image("crypto-app-logo.jpeg")
 
 # creating table
