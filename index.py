@@ -3,6 +3,7 @@ from requests.exceptions import ConnectionError, Timeout, TooManyRedirects
 import json
 import streamlit as sl
 import pandas as pd
+import matplotlib.pyplot as plt
 
 url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
 
@@ -108,9 +109,9 @@ def show_table():
 
 show_table() 
 
-sl.bar_chart(
-    pd.DataFrame(
-        [percent_change_7d_array],
-        columns=symbol_array
-    )
-)
+fig = plt.figure()
+ax = fig.add_axes([0,0,1,1])
+langs = ['C', 'C++', 'Java', 'Python', 'PHP']
+students = [23,17,35,29,12]
+ax.bar(langs,students)
+sl.pyplot(plt)
