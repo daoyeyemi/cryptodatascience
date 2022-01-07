@@ -108,10 +108,24 @@ def show_table():
     sl.table(crypto_data_table)
 
 show_table() 
-
+sl.subheader('Positive percent change in crypto price')
 fig = plt.figure()
-ax = fig.add_axes([0,0,1,1])
-langs = ['C', 'C++', 'Java', 'Python', 'PHP']
-students = [23,17,35,29,12]
-ax.bar(langs,students)
+ax = fig.add_axes([0, 0, 2, 2])
+crypto_symbols = symbol_array
+percent_change = percent_change_7d_array
+ax.bar(crypto_symbols, percent_change)
+plt.xticks(rotation=70)
+fig.canvas.draw()
+sl.pyplot(plt)
+
+sl.subheader('Negative percent change in crypto price')
+fig = plt.figure()
+ax = fig.add_axes([0, 0, 2, 2])
+crypto_symbols = symbol_array
+percent_change = percent_change_7d_array
+ax.bar(crypto_symbols, percent_change)
+plt.xticks(rotation=70)
+plt.xticks(rotation=70)
+
+fig.canvas.draw()
 sl.pyplot(plt)
