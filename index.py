@@ -29,7 +29,26 @@ except (ConnectionError, Timeout, TooManyRedirects) as e:
   print(e)
 
 data = data["data"]
-data = data[0:25]
+
+symbols = []
+
+print(symbols)
+
+sl.sidebar.header('Input Options')
+
+coin_number = sl.sidebar.slider("Number of the top cryptocurrencies you're searching for:", 1, 50, 50)
+
+data = data[0:coin_number]
+
+for point in data:    
+    symbol = point["symbol"]
+    symbols.append(symbol)
+
+symbols = symbols[0:coin_number]
+
+sl.sidebar.multiselect('Cryptocurrency', symbols, symbols)
+
+sl.sidebar.selectbox('Time frame for percent change', ['7d', '24h', '1h'])
 
 name_array = [] 
 symbol_array = []
@@ -89,4 +108,9 @@ def show_table():
 
 show_table() 
 
-sl.sidebar.multiselect('Cryptocurrency', symbol_array, symbol_array)
+sl.bar_chart(
+    pd.DataFrame(
+        [percent_change_7d_array],
+        columns=symbol_array
+    )
+)
