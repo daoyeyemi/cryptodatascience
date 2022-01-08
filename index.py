@@ -4,13 +4,17 @@ import json
 import streamlit as sl
 import pandas as pd
 import matplotlib.pyplot as plt
-
+from dotenv import load_dotenv 
+import os
 ## To List
 # - hide api key
 # - clean comments
 # - color code graph
 # - 'objectify' code 
 # change layout of app
+load_dotenv()
+
+api_key = os.getenv("api_key")
 
 url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
 
@@ -22,7 +26,7 @@ parameters = {
 
 headers = {
     'Accepts': 'application/json',
-    'X-CMC_PRO_API_KEY': '64cd695d-26ab-4937-b788-14b86a0db2f8'
+    'X-CMC_PRO_API_KEY': api_key
 }
 
 session = Session()
