@@ -48,7 +48,7 @@ symbols = symbols[0:coin_number]
 
 sl.sidebar.multiselect('Cryptocurrency', symbols, symbols)
 
-sl.sidebar.selectbox('Time frame for percent change', ['7d', '24h', '1h'])
+time_frame_percent = sl.sidebar.selectbox('Time frame for percent change', ['7d', '24h', '1h'])
 
 name_array = [] 
 symbol_array = []
@@ -78,12 +78,12 @@ for point in yooo:
     price_array.append("{:,.2f}".format(price))
     volume_24h_array.append("{:,.2f}".format(volume_24h))
     volume_change_24h_array.append("{:,.2f}".format(volume_change_24h))
-    percent_change_1h_array.append("{:,.2f}".format(percent_change_1h))
-    percent_change_24h_array.append("{:,.2f}".format(percent_change_24h))
-    percent_change_7d_array.append("{:,.2f}".format(percent_change_7d))
-    # percent_change_1h_array.append(percent_change_1h)
-    # percent_change_24h_array.append(percent_change_24h)
-    # percent_change_7d_array.append(percent_change_7d)
+    # percent_change_1h_array.append("{:,.2f}".format(percent_change_1h))
+    # percent_change_24h_array.append("{:,.2f}".format(percent_change_24h))
+    # percent_change_7d_array.append("{:,.2f}".format(percent_change_7d))
+    percent_change_1h_array.append(percent_change_1h)
+    percent_change_24h_array.append(percent_change_24h)
+    percent_change_7d_array.append(percent_change_7d)
     market_cap_array.append("{:,.2f}".format(market_cap))
         
     # percent_change_1h_array = list(map(int, percent_change_1h_array))
@@ -101,11 +101,12 @@ sl.image("crypto-app-logo.jpeg")
 sl.write("Top 25 Cryptocurrencies")
 
 # def show_tables():
-percent_change_1h_array = list(map(float, percent_change_1h_array))
+# percent_change_1h_array = list(map(float, percent_change_1h_array))
 # percent_change_1h_array = list(map(int, percent_change_1h_array))
 print(percent_change_1h_array)
-percent_change_24h_array = list(map(float, percent_change_24h_array))
-percent_change_7d_array = list(map(float, percent_change_7d_array))
+# percent_change_24h_array = list(map(float, percent_change_24h_array))
+# percent_change_7d_array = list(map(float, percent_change_7d_array))
+
 crypto_data_table = pd.DataFrame(columns=['name', 'symbol', 'price', 'volume_24h', 'volume_change_24h', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d', 'market_cap'])
 crypto_data_table['name'] = name_array
 crypto_data_table['symbol'] = symbol_array
@@ -117,27 +118,29 @@ print(percent_change_1h_array)
 crypto_data_table['percent_change_24h'] = percent_change_24h_array
 crypto_data_table['percent_change_7d'] = percent_change_7d_array
 crypto_data_table['market_cap'] = market_cap_array
-# crypto_data_table['postive_percent_1h'] = crypto_data_table['percent_change_1h'] > 0
-# crypto_data_table['postive_percent_24h'] = crypto_data_table['percent_change_24h'] > 0
-# crypto_data_table['postive_percent_7d'] = crypto_data_table['percent_change_7d'] > 0
 sl.table(crypto_data_table)
 
-print(float(-100) > 0)
 # show_tables() 
-# sl.subheader('Positive percent change in crypto price')
-# positive_percent_change_dataframe = pd.DataFrame(columns=['name', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d'])
-# fig = plt.figure()
-# ax = fig.add_axes([0, 0, 2, 2])
-# crypto_symbols = symbol_array
+sl.subheader('Percent changes in crypto price')
+positive_percent_change_dataframe = pd.DataFrame(columns=['name', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d'])
+fig = plt.figure()
+ax = fig.add_axes([0, 0, 2, 2])
+crypto_symbols = symbol_array
+if time_frame_percent == '7d':
+    percent_change = percent_change_7d_array
+elif time_frame_percent == '24h':
+    percent_change = percent_change_24h_array
+else:
+    percent_change = percent_change_1h_array
+
 # percent_change = percent_change_7d_array
 # positive_percent_change_dataframe['percent_change_1h'] = percent_change_1h_array >= 0 
 # positive_percent_change_dataframe['percent_change_24h'] = percent_change_24h_array >= 0
 # positive_percent_change_dataframe['percent_change_7d'] = percent_change_7d_array >= 0
-# print()
-# ax.bar(crypto_symbols, percent_change, color='blue')
-# plt.xticks(rotation=70)
-# fig.canvas.draw()
-# sl.pyplot(plt)
+ax.bar(crypto_symbols, percent_change, color='blue')
+plt.xticks(rotation=70)
+fig.canvas.draw()
+sl.pyplot(plt)
 
 # sl.subheader('Negative percent change in crypto price')
 # negative_percent_change_dataframe = pd.DataFrame(columns=['name', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d'])
@@ -145,9 +148,9 @@ print(float(-100) > 0)
 # ax = fig.add_axes([0, 0, 2, 2])
 # crypto_symbols = symbol_array
 # percent_change = percent_change_7d_array
-# negative_percent_change_dataframe['percent_change_1h'] = percent_change_1h_array < 0 
-# negative_percent_change_dataframe['percent_change_24h'] = percent_change_24h_array < 0 
-# negative_percent_change_dataframe['percent_change_7d'] = percent_change_7d_array < 0 
+# # negative_percent_change_dataframe['percent_change_1h'] = percent_change_1h_array < 0 
+# # negative_percent_change_dataframe['percent_change_24h'] = percent_change_24h_array < 0 
+# # negative_percent_change_dataframe['percent_change_7d'] = percent_change_7d_array < 0 
 # ax.bar(crypto_symbols, percent_change, color='red')
 # plt.xticks(rotation=70)
 # fig.canvas.draw()
