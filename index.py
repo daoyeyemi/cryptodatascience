@@ -93,7 +93,7 @@ crypto_data_table['percent_change_1h'] = percent_change_1h_array
 crypto_data_table['percent_change_24h'] = percent_change_24h_array
 crypto_data_table['percent_change_7d'] = percent_change_7d_array
 crypto_data_table['market_cap'] = market_cap_array
-# sl.table(crypto_data_table)
+
 
 all_coins = crypto_data_table['symbol']
 
