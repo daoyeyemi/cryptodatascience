@@ -4,7 +4,6 @@ import json
 import streamlit as sl
 import pandas as pd
 import matplotlib.pyplot as plt
-import numpy as np
 
 url = "https://pro-api.coinmarketcap.com/v1/cryptocurrency/listings/latest"
 
@@ -143,6 +142,8 @@ else:
 # positive_percent_change_dataframe['percent_change_7d'] = percent_change_7d_array >= 0
 ax.bar(crypto_symbols, percent_change, color='blue')
 plt.xticks(rotation=70)
+plt.xlabel("Cryptocurrency")
+plt.ylabel("Percentage change within specified time period")
 fig.canvas.draw()
 sl.pyplot(plt)
 
