@@ -121,17 +121,21 @@ crypto_data_table['market_cap'] = market_cap_array
 sl.table(crypto_data_table)
 
 # show_tables() 
-sl.subheader('Percent changes in crypto price')
+sl.subheader('Bar plot of percent changes in crypto price')
+subheader_percent_changes = 0;
 positive_percent_change_dataframe = pd.DataFrame(columns=['name', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d'])
 fig = plt.figure()
 ax = fig.add_axes([0, 0, 2, 2])
 crypto_symbols = symbol_array
 if time_frame_percent == '7d':
     percent_change = percent_change_7d_array
+    subheader_percent_changes = sl.write('*percent changes within a 7 day period*')
 elif time_frame_percent == '24h':
     percent_change = percent_change_24h_array
+    subheader_percent_changes = sl.write('*percent changes within a 24 hour period*')
 else:
     percent_change = percent_change_1h_array
+    subheader_percent_changes = sl.write('*percent changes within an hour period*')
 
 # percent_change = percent_change_7d_array
 # positive_percent_change_dataframe['percent_change_1h'] = percent_change_1h_array >= 0 
