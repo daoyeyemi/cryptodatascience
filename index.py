@@ -6,12 +6,14 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from dotenv import load_dotenv 
 import os
+
 ## To List
 # - hide api key
 # - clean comments
 # - color code graph
 # - 'objectify' code 
 # change layout of app
+
 load_dotenv()
 
 api_key = os.getenv("api_key")
