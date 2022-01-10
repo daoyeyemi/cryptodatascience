@@ -34,13 +34,12 @@ headers = {
 session = Session()
 session.headers.update(headers)
 
-try:
-  response = session.get(url, params=parameters)
-  crypto_data = json.loads(response.text)
-#   print(crypto_data, type(crypto_data))
+# try:
+response = session.get(url, params=parameters)
+crypto_data = json.loads(response.text)
 
-except (ConnectionError, Timeout, TooManyRedirects) as e:
-  print(e)
+# except (ConnectionError, Timeout, TooManyRedirects) as e:
+#   print(e)
 
 yooo = crypto_data['data']
 
