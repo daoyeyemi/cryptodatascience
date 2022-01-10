@@ -45,7 +45,7 @@ except (ConnectionError, Timeout, TooManyRedirects) as e:
 
 yooo = crypto_data['data']
 
-sl.write(crypto_data)
+# sl.write(crypto_data)
 
 sl.sidebar.header('Input Options')
 
