@@ -90,7 +90,7 @@ sl.title("Crypto Data Science App")
 
 sl.image("crypto-app-logo.jpeg")
 
-sl.write("Top 25 Cryptocurrencies")
+sl.write("Top f'{coin_number}' Cryptocurrencies")
 
 crypto_data_table = pd.DataFrame(columns=['name', 'symbol', 'price', 'volume_24h', 'volume_change_24h', 'percent_change_1h', 'percent_change_24h', 'percent_change_7d', 'market_cap'])
 crypto_data_table['name'] = name_array
