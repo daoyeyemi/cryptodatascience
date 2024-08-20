@@ -4,7 +4,7 @@ import json
 import streamlit as sl
 import pandas as pd
 import matplotlib.pyplot as plt
-from dotenv import load_dotenv 
+# from dotenv import load_dotenv 
 import os
 
 ## To List
@@ -14,7 +14,7 @@ import os
 # - 'objectify' code 
 # change layout of app
 
-load_dotenv()
+# load_dotenv()
 
 api_key = os.getenv("api_key")
 
